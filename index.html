@@ -3,24 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Página</title>
+    <title>Playlist da Melanie</title>
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button class="theme-toggle" onclick="toggleTheme()">Mudar Tema</button>
+    <!-- Botão de tema em forma de gatinho -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Mudar tema">
+        <div class="cat-face">
+            <div class="ears">
+                <div class="ear left"></div>
+                <div class="ear right"></div>
+            </div>
+            <div class="face">
+                <div class="eyes">
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+                </div>
+                <div class="nose"></div>
+                <div class="mouth"></div>
+                <div class="whiskers">
+                    <div class="whisker-left">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="whisker-right">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </button>
+
     <header>
-        <h1>Bem-vindo!!(a)</h1>
+        <h1>Playlist da Melanie</h1>
     </header>
 
     <main>
-        <section>
-            <h2>Conteúdo Principal</h2>
-            <p>Este é o conteúdo principal da página.</p>
+        <!-- Player de música com controles -->
+        <section class="player-container">
+            <div class="current-song">
+                <!-- Informações da música atual -->
+                <div class="song-info">
+                    <div class="current-album-art">
+                        <!-- A imagem do álbum será inserida aqui via JavaScript -->
+                    </div>
+                    <h2 class="song-title">Selecione uma música</h2>
+                    <p class="song-artist">Melanie Martinez</p>
+                    <!-- Barra de progresso -->
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <div class="time-info">
+                            <span class="current-time">0:00</span>
+                            <span class="duration">0:00</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Controles de reprodução -->
+                <div class="player-controls">
+                    <button class="control-btn shuffle" title="Aleatório">
+                        <i class="fas fa-random"></i>
+                    </button>
+                    <button class="control-btn" id="prev" title="Anterior">
+                        <i class="fas fa-backward"></i>
+                    </button>
+                    <button class="control-btn play-btn" id="play" title="Tocar/Pausar">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button class="control-btn" id="next" title="Próxima">
+                        <i class="fas fa-forward"></i>
+                    </button>
+                    <button class="control-btn repeat" title="Repetir">
+                        <i class="fas fa-redo"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lista de músicas -->
+        <section class="playlist-container">
+            <h2>Músicas</h2>
+            <div id="lista-de-musicas" class="music-list">
+                <!-- As músicas serão inseridas aqui via JavaScript -->
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 - Todos os direitos reservados</p>
+        <p>&copy; 2025 - Playlist da Melanie Martinez</p>
     </footer>
 
     <script src="app.js"></script>

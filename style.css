@@ -1,29 +1,42 @@
+/* Importação das fontes */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+/* Variáveis de cores e temas */
 :root {
     /* Tema claro (padrão) */
-    --bg-primary: #e8f4ff;  /* Azul bem clarinho */
-    --bg-secondary: #ffe8f0;  /* Rosa bem clarinho */
-    --text-primary: #4a90e2;  /* Azul médio */
-    --text-secondary: #ff99b9;  /* Rosa médio */
-    --accent-color: #ffb6d3;  /* Rosa candy */
-    --header-bg: linear-gradient(135deg, #e8f4ff, #ffe8f0);  /* Gradiente azul para rosa */
-    --footer-bg: linear-gradient(135deg, #ffe8f0, #e8f4ff);  /* Gradiente rosa para azul */
-    --button-bg: #ffb6d3;  /* Rosa candy */
-    --button-text: #4a90e2;  /* Azul médio */
-    --button-shadow: rgba(255, 182, 211, 0.5);  /* Sombra rosa */
+    --bg-primary: #e8f4ff;
+    --bg-secondary: #ffe8f0;
+    --text-primary: #4a90e2;
+    --text-secondary: #ff99b9;
+    --accent-color: #ffb6d3;
+    --header-bg: linear-gradient(135deg, #e8f4ff, #ffe8f0);
+    --footer-bg: linear-gradient(135deg, #ffe8f0, #e8f4ff);
+    --button-bg: #ffb6d3;
+    --button-text: #4a90e2;
+    --button-shadow: rgba(255, 182, 211, 0.5);
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --progress-bg: #e8f4ff;
+    --progress-fill: #ffb6d3;
+    --active-control: #ff99b9;
 }
 
 /* Tema escuro */
 [data-theme="dark"] {
-    --bg-primary: #1a2b3d;  /* Azul escuro */
-    --bg-secondary: #3d1a2b;  /* Rosa escuro */
-    --text-primary: #99ccff;  /* Azul claro */
-    --text-secondary: #ff99b9;  /* Rosa claro */
-    --accent-color: #ff8eb2;  /* Rosa mais vivo */
-    --header-bg: linear-gradient(135deg, #1a2b3d, #3d1a2b);  /* Gradiente escuro */
-    --footer-bg: linear-gradient(135deg, #3d1a2b, #1a2b3d);  /* Gradiente escuro invertido */
-    --button-bg: #ff8eb2;  /* Rosa mais vivo */
-    --button-text: #99ccff;  /* Azul claro */
-    --button-shadow: rgba(255, 142, 178, 0.3);  /* Sombra rosa escuro */
+    --bg-primary: #1a2b3d;
+    --bg-secondary: #3d1a2b;
+    --text-primary: #99ccff;
+    --text-secondary: #ff99b9;
+    --accent-color: #ff8eb2;
+    --header-bg: linear-gradient(135deg, #1a2b3d, #3d1a2b);
+    --footer-bg: linear-gradient(135deg, #3d1a2b, #1a2b3d);
+    --button-bg: #ff8eb2;
+    --button-text: #99ccff;
+    --button-shadow: rgba(255, 142, 178, 0.3);
+    --card-bg: rgba(26, 43, 61, 0.9);
+    --progress-bg: #2a3f57;
+    --progress-fill: #ff8eb2;
+    --active-control: #ff8eb2;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
@@ -112,6 +125,419 @@ section:hover {
     transform: translateY(-5px);
 }
 
+/* Player de música */
+.player-container {
+    text-align: center;
+}
+
+.current-song {
+    padding: 2rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--bg-secondary), var(--accent-color));
+}
+
+.song-info {
+    margin-bottom: 2rem;
+}
+
+.song-title {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0.5rem 0;
+}
+
+.song-artist {
+    color: var(--text-secondary);
+    font-size: 1.1em;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.control-btn {
+    background: var(--bg-primary);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--text-primary);
+    font-size: 1.2em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px var(--button-shadow);
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+    background: var(--accent-color);
+    color: var(--bg-primary);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+/* Lista de músicas */
+.playlist-container {
+    margin-top: 3rem;
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+.playlist-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.playlist-container::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+    border-radius: 10px;
+}
+
+.playlist-container::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 10px;
+}
+
+.playlist-container::-webkit-scrollbar-thumb:hover {
+    background: var(--button-bg);
+}
+
+/* Estilização da lista de músicas */
+.music-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+    padding-bottom: 2rem;
+}
+
+/* Player atual */
+.current-song {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px var(--button-shadow);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.current-album-art {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 1.5rem;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px var(--button-shadow);
+}
+
+.current-album-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.current-album-art:hover img {
+    transform: scale(1.05);
+}
+
+/* Barra de progresso */
+.progress-container {
+    margin: 1.5rem 0;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: var(--progress-bg);
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+}
+
+.progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: var(--progress-fill);
+    border-radius: 3px;
+    transition: width 0.1s linear;
+}
+
+.time-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Controles do player */
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.control-btn {
+    background: var(--bg-primary);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px var(--button-shadow);
+}
+
+.control-btn.play-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    background: var(--accent-color);
+    color: var(--bg-primary);
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+    background: var(--accent-color);
+    color: var(--bg-primary);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+.control-btn.active {
+    background: var(--active-control);
+    color: var(--bg-primary);
+}
+
+/* Cards de música */
+.musica-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 15px var(--button-shadow);
+}
+
+.card-image {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    overflow: hidden;
+}
+
+.card-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.play-overlay i {
+    color: white;
+    font-size: 3rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.musica-card:hover {
+    transform: translateY(-10px);
+}
+
+.musica-card:hover .play-overlay {
+    opacity: 1;
+}
+
+.musica-card:hover img {
+    transform: scale(1.1);
+}
+
+.song-details {
+    padding: 1rem;
+}
+
+.song-details h3 {
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.song-details p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.duration {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.musica-card.playing {
+    background: var(--accent-color);
+}
+
+.musica-card.playing .song-details h3,
+.musica-card.playing .song-details p,
+.musica-card.playing .duration {
+    color: var(--bg-primary);
+}
+
+.musica-card {
+    background: var(--bg-primary);
+    border-radius: 15px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 4px 15px var(--button-shadow);
+}
+
+.musica-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px var(--button-shadow);
+}
+
+.card-image {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.play-overlay i {
+    color: white;
+    font-size: 3rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.musica-card:hover .play-overlay {
+    opacity: 1;
+}
+
+.musica-card:hover img {
+    transform: scale(1.1);
+}
+
+.musica-card h2 {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: var(--text-primary);
+}
+
+.musica-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.musica-card.playing {
+    background: var(--accent-color);
+}
+
+.musica-card.playing h2,
+.musica-card.playing p {
+    color: var(--bg-primary);
+}
+
+.music-number {
+    width: 30px;
+    height: 30px;
+    background: var(--bg-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    color: var(--text-primary);
+}
+
+.music-info {
+    flex-grow: 1;
+}
+
+.music-title {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.music-artist {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+
+/* Animações adicionais */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.playing .music-number {
+    animation: pulse 1s infinite;
+    background: var(--button-bg);
+}
+
 h1 {
     color: white;  /* Texto branco para contrastar com o fundo rosa */
     margin-bottom: 1rem;
@@ -180,30 +606,181 @@ header::after {
     animation: ribbonWave 3s ease-in-out infinite reverse;
 }
 
-/* Botão de troca de tema */
+/* Botão de troca de tema - Gato */
 .theme-toggle {
     position: fixed;
     top: 1.5rem;
     right: 1.5rem;
-    padding: 0.8rem 1.5rem;
-    background-color: var(--button-bg);
+    width: 80px;
+    height: 80px;
+    background: none;
     border: none;
-    border-radius: 50px;
     cursor: pointer;
-    color: var(--button-text);
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 15px var(--button-shadow);
+    z-index: 1000;
+}
+
+.cat-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
     transition: all 0.3s ease;
 }
 
-.theme-toggle:hover {
-    transform: scale(1.05) translateY(-2px);
-    box-shadow: 0 6px 20px var(--button-shadow);
+/* Orelhas do gato */
+.ears {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    top: -5px;
 }
 
-.theme-toggle:active {
+.ear {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 30px solid var(--button-bg);
+    transition: all 0.3s ease;
+}
+
+.ear.left {
+    left: 10px;
+    transform: rotate(-20deg);
+}
+
+.ear.right {
+    right: 10px;
+    transform: rotate(20deg);
+}
+
+/* Rosto do gato */
+.face {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80%;
+    background-color: var(--button-bg);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+/* Olhos do gato */
+.eyes {
+    position: absolute;
+    width: 100%;
+    top: 35%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.eye {
+    width: 12px;
+    height: 12px;
+    background-color: var(--button-text);
+    border-radius: 50%;
+    position: relative;
+}
+
+[data-theme="dark"] .eye {
+    background-color: var(--bg-primary);
+}
+
+/* Nariz do gato */
+.nose {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 5px);
+    width: 10px;
+    height: 8px;
+    background-color: var(--text-secondary);
+    border-radius: 50%;
+}
+
+/* Boca do gato */
+.mouth {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 8px;
+    border-radius: 0 0 20px 20px;
+    border-bottom: 2px solid var(--text-secondary);
+}
+
+/* Bigodes do gato */
+.whiskers {
+    position: absolute;
+    width: 100%;
+    top: 55%;
+}
+
+.whisker-left, .whisker-right {
+    position: absolute;
+    top: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.whisker-left {
+    left: 5px;
+}
+
+.whisker-right {
+    right: 5px;
+}
+
+.whisker-left span, .whisker-right span {
+    display: block;
+    width: 20px;
+    height: 1px;
+    background-color: var(--text-secondary);
+    margin: 4px 0;
+}
+
+.whisker-left span {
+    transform-origin: right;
+}
+
+.whisker-right span {
+    transform-origin: left;
+}
+
+.whisker-left span:nth-child(1) { transform: rotate(-10deg); }
+.whisker-left span:nth-child(2) { transform: rotate(0deg); }
+.whisker-left span:nth-child(3) { transform: rotate(10deg); }
+
+.whisker-right span:nth-child(1) { transform: rotate(10deg); }
+.whisker-right span:nth-child(2) { transform: rotate(0deg); }
+.whisker-right span:nth-child(3) { transform: rotate(-10deg); }
+
+/* Animações */
+.theme-toggle:hover .ear.left {
+    transform: rotate(-30deg) scale(1.1);
+}
+
+.theme-toggle:hover .ear.right {
+    transform: rotate(30deg) scale(1.1);
+}
+
+.theme-toggle:hover .face {
+    transform: scale(1.1);
+}
+
+.theme-toggle:active .face {
     transform: scale(0.95);
+}
+
+/* Adaptações para tema escuro */
+[data-theme="dark"] .face,
+[data-theme="dark"] .ear {
+    background-color: var(--button-bg);
+}
+
+[data-theme="dark"] .whisker-left span,
+[data-theme="dark"] .whisker-right span,
+[data-theme="dark"] .mouth {
+    background-color: var(--button-text);
 }
